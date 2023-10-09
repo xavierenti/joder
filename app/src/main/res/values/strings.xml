@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">hijoputa</string>
+    <string name="app_name" translatable="false">hijoputa</string>
+    <string name="hello_world">Hello World</string>
+    <string name="random_text" translatable="false">random</string>
 </resources>
