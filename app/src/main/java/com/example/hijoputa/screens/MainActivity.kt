@@ -9,62 +9,26 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.material3.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hijoputa.R
+import com.example.hijoputa.heroes.HeroAdapter
+import com.example.hijoputa.heroes.HeroData
+import com.example.hijoputa.heroes.HeroProvider
 
 class MainActivity : ComponentActivity() {
 
-    val btChangeScreen by lazy { findViewById<Button>(R.id.bt_change_screen) }
+    val table by lazy { findViewById<RecyclerView>(R.id.my_recycleView) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.start_screen)
 
-        btChangeScreen.setOnClickListener{
-            /*
-            val toast = Toast(this)
-            toast.duration = Toast.LENGTH_LONG
-            toast.setText("Soy un toast muy molon")
+        table.layoutManager = LinearLayoutManager(this)
 
-            toast.show()
-            */
 
-            var builder = AlertDialog.Builder(this)
-            builder.setTitle("Puto titulo del dialogo")
-            //builder.setMessage("Mensage todavia mas puto del dialogo")
-            builder.setPositiveButton("Puto Positivo"){dialoge, witch ->
-                dialoge.dismiss()
-            }
 
-            builder.setOnCancelListener{
-                val toast = Toast(this)
-                toast.setText("Puto Cancelado")
-                toast.show()
-            }
+        table.adapter = HeroAdapter(HeroProvider.GetAllHeros())
 
-            builder.setNegativeButton("Puto Final"){dialoge, which ->
-                dialoge.dismiss()
-            }
-
-            builder.setNeutralButton("Puto Neutro"){dialoge, which ->
-                dialoge.dismiss()
-            }
-
-            val options = arrayOf("Respuesta 1", "Respuesta 2", "Respuesta 3", "Respuesta 4")
-            val selectedAnswers = booleanArrayOf (false, false, false, false)
-
-            /*builder.setMultiChoiceItems(options, selectedAnswers){dialog, which, isChecked ->
-                selectedAnswers[which] = isChecked
-            }
-*/
-
-            /*val input = EditText(this)
-            input.hint = "Escribe puto"
-            builder.show(input)
-            */
-
-                
-
-            val dialog = builder.create()
-            dialog.show()
-        }
     }
 }
