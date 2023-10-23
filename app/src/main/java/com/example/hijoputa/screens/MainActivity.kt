@@ -15,6 +15,11 @@ import com.example.hijoputa.R
 import com.example.hijoputa.heroes.HeroAdapter
 import com.example.hijoputa.heroes.HeroData
 import com.example.hijoputa.heroes.HeroProvider
+import com.example.hijoputa.heroes.Repositories.HeroMockRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -24,11 +29,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.start_screen)
 
+        InitHeroRecycleView()
+    }
+    private fun InitHeroRecycleView(){
         table.layoutManager = LinearLayoutManager(this)
 
+        CoroutineScope ( Dispatchers.IO).launch{
+            val heroRepository = HeroMockRepository()
+            val provider = HeroProvider(heroRepository)
+            val heroList = provider.GetHeroes()
+            val adapter = HeroAdapter(heroList)
 
+            CoroutineScope(Dispatchers.Main).launch{
+                table.adapter=adapter
+            }
+        }
 
-        table.adapter = HeroAdapter(HeroProvider.GetAllHeros())
-
+        val hero = HeroData("","")
     }
 }
