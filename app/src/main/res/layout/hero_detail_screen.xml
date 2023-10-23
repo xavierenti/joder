@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/secondary">
+
+    <ImageButton
+        android:id="@+id/Hero_detail_back_arrow"
+        android:layout_width="@dimen/fuck"
+        android:layout_height="@dimen/fuck"
+        android:background="@drawable/back_arrow"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:id="@+id/Hero_detail_beisur"
+        android:layout_width="@dimen/fuck"
+        android:layout_height="@dimen/fuck"
+        android:background="@drawable/fuckid"/>
+
+
+</LinearLayout>
+    <TextView
+        android:id="@+id/Hero_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Hero Name"
+        android:textAlignment="center"
+        android:textSize="@dimen/Text_title"
+        />
+
+    <TextView
+        android:id="@+id/Hero_detail_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Hero Description"
+        android:layout_margin="@dimen/text_normal"
+        android:textSize="@dimen/text_normal"
+        />
+
+</LinearLayout>

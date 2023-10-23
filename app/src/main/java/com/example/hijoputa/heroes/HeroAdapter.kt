@@ -1,10 +1,12 @@
 package com.example.hijoputa.heroes
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hijoputa.R
 import com.example.hijoputa.heroes.Repositories.HeroRepository
+import com.example.hijoputa.screens.HeroDetail
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -22,7 +24,13 @@ class HeroAdapter(private val repository:HeroRepository, private val pagination 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return HeroViewHolder(layoutInflater.inflate(R.layout.hero_cell, parent, false))
+        val viewHolder = HeroViewHolder(layoutInflater.inflate(R.layout.hero_cell, parent, false))
+
+        viewHolder.itemView.setOnClickListener{
+            val newIntent = Intent(parent.context, HeroDetail::class.java)
+            parent.context.startActivity(newIntent)
+        }
+        return viewHolder
     }
 
     override fun getItemCount(): Int = heroList.size

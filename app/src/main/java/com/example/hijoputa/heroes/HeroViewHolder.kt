@@ -9,6 +9,7 @@ class HeroViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     val name by lazy { view.findViewById<TextView>(R.id.Hero_cell_title) }
     val description by lazy { view.findViewById<TextView>(R.id.Hero_cell_description) }
+    var heroState : heroData?
 
     fun SetUpCellWithHero(hero : HeroData){
         name.text = hero.name
