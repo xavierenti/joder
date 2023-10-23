@@ -15,6 +15,7 @@ import com.example.hijoputa.R
 import com.example.hijoputa.heroes.HeroAdapter
 import com.example.hijoputa.heroes.HeroData
 import com.example.hijoputa.heroes.HeroProvider
+import com.example.hijoputa.heroes.Repositories.HeroApiService
 import com.example.hijoputa.heroes.Repositories.HeroMockRepository
 import com.example.hijoputa.heroes.Repositories.HeroSharedDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -30,34 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.start_screen)
 
-        InitHeroRecycleView()
-    }
-
-
-    private fun InitHeroRecycleView(){
         table.layoutManager = LinearLayoutManager(this)
-
-
-        val tempList = mutableListOf<HeroData>(
-            HeroData("Test 1","Desc"),
-            HeroData("Test 1","Desc"),
-            HeroData("Test 1","Desc"),
-            HeroData("Test 1","Desc")
-        )
-
-        //Obtenemos la lista de heroes
-        //añadimos un nuebo heroe a la lista
-        CoroutineScope ( Dispatchers.IO).launch{
-            val heroRepository = HeroSharedDatabase()//nuevo repo
-            val provider = HeroProvider(heroRepository)
-            val heroList = provider.GetHeroes()
-            val adapter = HeroAdapter(heroList)
-
-            CoroutineScope(Dispatchers.Main).launch{
-                table.adapter=adapter
-            }
-        }
-
-        val hero = HeroData("","")
+        table.adapter = HeroAdapter(HeroApiService())
     }
 }

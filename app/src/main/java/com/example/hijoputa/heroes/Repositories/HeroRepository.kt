@@ -4,5 +4,5 @@ import com.example.hijoputa.heroes.HeroData
 
 interface HeroRepository {
 
-    suspend fun GetHeros() : MutableList<HeroData>
+    suspend fun GetHeros(offset: Int ,limit: Int) : MutableList<HeroData>
 }
